@@ -42,8 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tree\BaseTree.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tree\IBaseTree.cs" />
+    <Compile Include="Tree\ModelTree.cs" />
+    <Compile Include="Tree\Node.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

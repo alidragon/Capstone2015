@@ -13,5 +13,10 @@ namespace Capstone.Tree {
         public void AddWord(string parent, string word);
         public bool Contains(string word);
         public Node GetNode(string word);
+        /// <summary>
+        /// Should remove the node and any child nodes from the tree
+        /// </summary>
+        /// <param name="toRemove"></param>
+        public void RemoveNode(Node toRemove);
     }
 }
