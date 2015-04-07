@@ -1,1 +1,2 @@
 C:\Users\Sean Palmer\Documents\Visual Studio 2013\Projects\Capstone\Capstone\bin\Debug\Capstone.exe.config
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\bin\Debug\Capstone.exe.config
