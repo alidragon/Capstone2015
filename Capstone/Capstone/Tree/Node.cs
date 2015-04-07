@@ -9,5 +9,12 @@ namespace Capstone.Tree {
         public Node Parent { get; set; }
         public string KeyWord { get; set; }
 
+        public Node() {
+
+        }
+
+        public Node(string keyword) {
+            this.KeyWord = keyword;
+        }
     }
 }

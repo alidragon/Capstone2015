@@ -1,0 +1,6 @@
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\obj\Debug\TreeApi.csprojResolveAssemblyReference.cache
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\bin\Debug\Capstone.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\obj\Debug\Capstone.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\bin\Debug\Capstone.dll.config
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\bin\Debug\Capstone.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\obj\Debug\Capstone.dll
