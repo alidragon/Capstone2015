@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>9bd1e29b-ff61-4193-88c5-3f6148861192</ProjectGuid>
+    <ProjectGuid>{A4895B82-7150-4C78-9676-1AD1DE79EEA5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TextExtraction</RootNamespace>
@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IO\FileIO.cs" />
+    <Compile Include="IO\IIO.cs" />
+    <Compile Include="Extract\ITextExtractor.cs" />
+    <Compile Include="Extract\TextExtractor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

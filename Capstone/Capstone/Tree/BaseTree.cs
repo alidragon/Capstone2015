@@ -44,8 +44,6 @@ namespace Capstone.Tree {
         }
 
         public Node GetNode(string word) {
-            Console.WriteLine("Finding word..." + word);
-            Console.WriteLine("Tree count: " + treeNodes.Count);
             return treeNodes[word];
         }
 

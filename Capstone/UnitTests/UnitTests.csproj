@@ -51,12 +51,18 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseTreeTests.cs" />
+    <Compile Include="FileIOTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextExtractorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Capstone\TreeApi.csproj">
       <Project>{cf68cbcd-0c9d-4cc1-a66a-319a0019c883}</Project>
       <Name>TreeApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextExtraction\TextExtraction.csproj">
+      <Project>{a4895b82-7150-4c78-9676-1ad1de79eea5}</Project>
+      <Name>TextExtraction</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

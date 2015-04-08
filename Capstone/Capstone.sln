@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeApi", "Capstone\TreeApi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{95D3CA2F-C6DC-421C-9A26-6ACA9D179C85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextExtraction", "TextExtraction\TextExtraction.csproj", "{A4895B82-7150-4C78-9676-1AD1DE79EEA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{95D3CA2F-C6DC-421C-9A26-6ACA9D179C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95D3CA2F-C6DC-421C-9A26-6ACA9D179C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95D3CA2F-C6DC-421C-9A26-6ACA9D179C85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4895B82-7150-4C78-9676-1AD1DE79EEA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4895B82-7150-4C78-9676-1AD1DE79EEA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4895B82-7150-4C78-9676-1AD1DE79EEA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4895B82-7150-4C78-9676-1AD1DE79EEA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

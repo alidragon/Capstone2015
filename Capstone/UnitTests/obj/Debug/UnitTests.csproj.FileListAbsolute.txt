@@ -5,3 +5,5 @@ C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\obj\Debu
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\obj\Debug\UnitTests.dll
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\obj\Debug\UnitTests.pdb
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\Capstone.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\TextExtraction.exe
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\TextExtraction.pdb
