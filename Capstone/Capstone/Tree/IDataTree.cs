@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.Tree {
     public interface IDataTree {
-        DataNode Root { get; set; }
-        void AddWord();
+        DataNode Root { get; }
+        void AddConnection(string word);
     }
 }

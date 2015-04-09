@@ -1,0 +1,10 @@
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\PuttingThingsTogether.exe.config
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\PuttingThingsTogether.exe
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\PuttingThingsTogether.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\Capstone.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\TextExtraction.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\Capstone.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\TextExtraction.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\obj\Debug\PuttingThingsTogether.csprojResolveAssemblyReference.cache
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\obj\Debug\PuttingThingsTogether.exe
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\obj\Debug\PuttingThingsTogether.pdb

@@ -11,7 +11,7 @@ using TextExtraction.IO;
 namespace UnitTests {
     [TestClass]
     public class FileIOTests {
-        string testpath = "G:\\Blogs\\blogs\\5114.male.25.indUnk.Scorpio.xml";
+        string testpath = @"C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\5114.male.25.indUnk.Scorpio.xml";
 
         [TestMethod]
         public void ReadFileTest() {
@@ -34,6 +34,13 @@ namespace UnitTests {
         public void ReadSourceNonString() {
             IIO io = new FileIO();
             string result = io.ReadSource(new object());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ReadNonexistentFile() {
+            IIO io = new FileIO();
+            string result = io.ReadSource("");
         }
     }
 }

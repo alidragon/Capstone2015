@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Capstone.Tree {
+    [Serializable]
     public class Node {
         public Node Parent { get; set; }
         public string KeyWord { get; set; }

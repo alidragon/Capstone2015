@@ -1,0 +1,15 @@
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\bin\Debug\TreeBuilder.exe.config
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\bin\Debug\TreeBuilder.exe
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\bin\Debug\TreeBuilder.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\bin\Debug\Capstone.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\bin\Debug\Capstone.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder.csprojResolveAssemblyReference.cache
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\MainWindow.baml
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\MainWindow.g.cs
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\App.g.cs
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder_MarkupCompile.cache
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder.g.resources
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder.Properties.Resources.resources
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder.csproj.GenerateResource.Cache
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder.exe
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder.pdb

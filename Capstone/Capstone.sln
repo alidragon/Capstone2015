@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextExtraction", "TextExtraction\TextExtraction.csproj", "{A4895B82-7150-4C78-9676-1AD1DE79EEA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuttingThingsTogether", "PuttingThingsTogether\PuttingThingsTogether.csproj", "{13F2F68C-5323-48E4-8638-46D7DB6B3694}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeBuilder", "TreeBuilder\TreeBuilder.csproj", "{02C341D9-48E3-4D3E-8236-840334F2C9D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{A4895B82-7150-4C78-9676-1AD1DE79EEA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4895B82-7150-4C78-9676-1AD1DE79EEA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4895B82-7150-4C78-9676-1AD1DE79EEA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13F2F68C-5323-48E4-8638-46D7DB6B3694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13F2F68C-5323-48E4-8638-46D7DB6B3694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13F2F68C-5323-48E4-8638-46D7DB6B3694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13F2F68C-5323-48E4-8638-46D7DB6B3694}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02C341D9-48E3-4D3E-8236-840334F2C9D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C341D9-48E3-4D3E-8236-840334F2C9D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C341D9-48E3-4D3E-8236-840334F2C9D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C341D9-48E3-4D3E-8236-840334F2C9D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -50,6 +50,9 @@
     <Compile Include="Tree\DataNode.cs" />
     <Compile Include="Tree\IBaseTree.cs" />
     <Compile Include="Tree\IDataTree.cs" />
+    <Compile Include="Tree\IO\InvalidFileException.cs" />
+    <Compile Include="Tree\IO\ITreeIO.cs" />
+    <Compile Include="Tree\IO\TreeIO.cs" />
     <Compile Include="Tree\ModelTree.cs" />
     <Compile Include="Tree\Node.cs" />
   </ItemGroup>

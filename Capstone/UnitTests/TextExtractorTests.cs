@@ -28,7 +28,9 @@ namespace UnitTests {
             "28,February,2001",
             "27,February,2001",
             "26,February,2001"
-        }; 
+        };
+
+        private string nonexistentTag = "something";
 
         [TestMethod]
         public void TextExtractionTest() {
@@ -110,6 +112,13 @@ namespace UnitTests {
                 Assert.AreEqual(tag2Content[i], post);
             }
 
+            Assert.IsFalse(t.HasNextContent());
+            Assert.IsNull(t.FindNextContent());
+        }
+
+        [TestMethod]
+        public void NonexistentTagTest() {
+            ITextExtractor t = new TextExtractor(testString1, nonexistentTag);
             Assert.IsFalse(t.HasNextContent());
             Assert.IsNull(t.FindNextContent());
         }

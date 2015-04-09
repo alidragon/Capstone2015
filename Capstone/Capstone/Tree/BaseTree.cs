@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Capstone.Tree {
+    [Serializable]
     public class BaseTree : IBaseTree {
         private Dictionary<string, Node> treeNodes;
         public Node Root { get; set; }
