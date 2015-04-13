@@ -1,24 +1,30 @@
 ﻿<Window x:Class="TreeBuilder.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:t="clr-namespace:TreeApi.Tree;assembly=TreeApi"
+        Title="Content Tree Builder" Height="350" Width="400">
     <StackPanel Orientation="Horizontal">
-        <StackPanel Orientation="Vertical" Width="200">
+        <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
+                <Button x:Name="Add" Click="Add_Click" Width="100">Add</Button>
+                <Button x:Name="Delete" Click="Delete_Click" Width="100">Delete</Button>
                 <Button x:Name="Save" Click="Save_Click" Width="100">Save</Button>
                 <Button x:Name="Load" Click="Load_Click" Width="100">Load</Button>
             </StackPanel>
             <Label>Node List</Label>
             <StackPanel x:Name="Buttons" Orientation="Horizontal">
-                <Button x:Name="Add" Click="Add_Click" Width="100">Add</Button>
-                <Button x:Name="Delete" Click="Delete_Click" Width="100">Delete</Button>
             </StackPanel>
-            <ScrollViewer>
-                <ListBox x:Name="nodeList" Height="250">
-
-                </ListBox>
+            <ScrollViewer Height="270" Width="390">
+                <TreeView>
+                    <TreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type t:Node}"  ItemsSource="{Binding Members}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding KeyWord}" />
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                    </TreeView.Resources>
+                </TreeView>
             </ScrollViewer>
         </StackPanel>
-        <Canvas></Canvas>
     </StackPanel>
 </Window>

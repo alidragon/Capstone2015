@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Capstone.Tree {
+namespace TreeApi.Tree {
     [Serializable]
     public class BaseTree : IBaseTree {
         private Dictionary<string, Node> treeNodes;
@@ -65,6 +65,10 @@ namespace Capstone.Tree {
             if (treeNodes.Count == 0) {
                 Root = null;
             }
+        }
+
+        public System.Collections.IEnumerator GetEnumerator() {
+            return treeNodes.Values.GetEnumerator();
         }
     }
 }

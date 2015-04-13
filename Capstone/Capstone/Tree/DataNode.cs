@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Capstone.Tree {
+namespace TreeApi.Tree {
     public class DataNode {
     }
 }

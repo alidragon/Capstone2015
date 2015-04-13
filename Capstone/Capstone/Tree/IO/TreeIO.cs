@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Capstone.Tree.IO {
+namespace TreeApi.Tree.IO {
     public class TreeIO : ITreeIO {
         public void SaveBaseTree(IBaseTree tree, string location) {
             IFormatter formatter = new BinaryFormatter();

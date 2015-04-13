@@ -1,4 +1,4 @@
-﻿using Capstone.Tree;
+﻿using TreeApi.Tree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +24,15 @@ namespace TreeBuilder {
 
         public MainWindow() {
             InitializeComponent();
+
+            tree = new BaseTree();
+            tree.AddWord((string)null, "Root");
+
+            //nodeList.ItemsSource = tree;
         }
 
         private void Load_Click(object sender, RoutedEventArgs e) {
-
+            //open new popup window to find tree save file, open file
         }
 
         private void Add_Click(object sender, RoutedEventArgs e) {

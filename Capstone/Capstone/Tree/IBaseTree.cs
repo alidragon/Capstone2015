@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Capstone.Tree {
-    public interface IBaseTree {
+namespace TreeApi.Tree {
+    public interface IBaseTree : IEnumerable {
         Node Root { get; set; }
 
         void AddNode(Node parent, Node newNode);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Capstone.Tree {
+namespace TreeApi.Tree {
     [Serializable]
     public class Node {
         public Node Parent { get; set; }

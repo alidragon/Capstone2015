@@ -1,9 +1,9 @@
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\UnitTests.dll
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\UnitTests.pdb
-C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\Capstone.pdb
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\obj\Debug\UnitTests.dll
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\obj\Debug\UnitTests.pdb
-C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\Capstone.dll
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\TextExtraction.pdb
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\TextExtraction.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\TreeApi.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\TreeApi.pdb
