@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.VisualBasic;
+using Microsoft.Win32;
+using TreeApi.Tree.IO;
 
 namespace TreeBuilder {
     /// <summary>
@@ -20,31 +23,98 @@ namespace TreeBuilder {
     /// </summary>
     public partial class MainWindow : Window {
 
-        private IBaseTree tree;
+        private ViewableTree tree;
+        private IBaseTree baseTree;
 
         public MainWindow() {
             InitializeComponent();
 
-            tree = new BaseTree();
-            tree.AddWord((string)null, "Root");
+            baseTree = new BaseTree();
+            baseTree.AddWord((string)null, "Root");
 
-            //nodeList.ItemsSource = tree;
-        }
+            tree = new ViewableTree(baseTree);
+            nodeList.ItemsSource = tree.Root;
 
-        private void Load_Click(object sender, RoutedEventArgs e) {
-            //open new popup window to find tree save file, open file
         }
 
         private void Add_Click(object sender, RoutedEventArgs e) {
-
+            ViewableTreeNode selected = nodeList.SelectedItem as ViewableTreeNode;
+            string word = wordBox.Text;
+            if (selected == null) {
+                MessageBox.Show("You must select a parent before adding a word");
+            } else if(string.IsNullOrEmpty(word)) {
+                MessageBox.Show("You must enter a word to add to the tree");
+            } else if(baseTree.Contains(word)) {
+                MessageBox.Show("All words must be unique");
+            } else {
+                tree.Add(selected, word);
+                wordBox.Text = "";
+            }
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e) {
-
+            ViewableTreeNode selected = nodeList.SelectedItem as ViewableTreeNode;
+            if (selected == null) {
+                MessageBox.Show("You must select a word to delete");
+            } else {
+                try {
+                    tree.Remove(selected);
+                } catch (InvalidOperationException) {
+                    MessageBox.Show("Cannot remove root of tree");
+                }
+            }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e) {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = "Tree"; // Default file name
+            sfd.DefaultExt = ".tree"; // Default file extension
+            sfd.Filter = "Tree Files (.tree)|*.tree"; // Filter files by extension 
 
+            // Show open file dialog box
+            Nullable<bool> result = sfd.ShowDialog();
+
+            // Process open file dialog box results 
+            if (result == true) {
+                // Open document 
+                string filename = sfd.FileName;
+                TreeIO io = new TreeIO();
+                io.SaveBaseTree(baseTree, filename);
+            }
+        }
+        private void Load_Click(object sender, RoutedEventArgs e) {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.FileName = "Tree"; 
+            ofd.DefaultExt = ".tree";
+            ofd.Filter = "Tree Files (.tree)|*.tree";
+
+            Nullable<bool> result = ofd.ShowDialog();
+
+            if (result == true) {
+                string filename = ofd.FileName;
+                TreeIO io = new TreeIO();
+                baseTree = io.LoadBaseTree(filename);
+
+                tree = new ViewableTree(baseTree);
+                nodeList.ItemsSource = tree.Root;
+            }
+        }
+
+        private void New_Click(object sender, RoutedEventArgs e) {
+            baseTree = new BaseTree();
+            baseTree.AddWord((string)null, "Root");
+
+            tree = new ViewableTree(baseTree);
+            nodeList.ItemsSource = tree.Root;
+        }
+
+        private void Node_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
+            Label nodeLabel = sender as Label;
+            string newName = Interaction.InputBox("Please enter the new keyword:", "Rename", nodeLabel.Content.ToString());
+            if (!string.IsNullOrEmpty(newName)) {
+                ViewableTreeNode selected = nodeList.SelectedItem as ViewableTreeNode;
+                tree.Rename(selected, newName);
+            }
         }
     }
 }

@@ -45,16 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tree\BaseTree.cs" />
+    <Compile Include="StringFunctions.cs" />
+    <Compile Include="Tree\ContentTree\BaseTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tree\DataNode.cs" />
-    <Compile Include="Tree\IBaseTree.cs" />
-    <Compile Include="Tree\IDataTree.cs" />
+    <Compile Include="Tree\DataTree\Connection.cs" />
+    <Compile Include="Tree\DataTree\DataNode.cs" />
+    <Compile Include="Tree\ContentTree\IBaseTree.cs" />
+    <Compile Include="Tree\DataTree\DataTreeBuilder.cs" />
+    <Compile Include="Tree\DataTree\IDataTree.cs" />
     <Compile Include="Tree\IO\InvalidFileException.cs" />
     <Compile Include="Tree\IO\ITreeIO.cs" />
     <Compile Include="Tree\IO\TreeIO.cs" />
-    <Compile Include="Tree\ModelTree.cs" />
-    <Compile Include="Tree\Node.cs" />
+    <Compile Include="Tree\DataTree\DocumentMappedTree.cs" />
+    <Compile Include="Tree\ContentTree\Node.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

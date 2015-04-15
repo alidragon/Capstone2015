@@ -11,14 +11,14 @@ namespace UnitTests {
             IBaseTree tree = new BaseTree();
 
             Assert.IsNull(tree.Root);
-            Assert.IsFalse(tree.Contains("All"));
+            Assert.IsFalse(tree.Contains("all"));
 
             tree.AddNode(null, new Node("All"));
 
             Assert.IsNotNull(tree.Root);
-            Assert.AreEqual("All", tree.Root.KeyWord);
-            Assert.IsTrue(tree.Contains("All"));
-            Assert.AreEqual("All", tree.GetNode("All").KeyWord);
+            Assert.AreEqual("all", tree.Root.KeyWord);
+            Assert.IsTrue(tree.Contains("all"));
+            Assert.AreEqual("all", tree.GetNode("all").KeyWord);
         }
 
         [TestMethod]
@@ -26,14 +26,14 @@ namespace UnitTests {
             IBaseTree tree = new BaseTree();
 
             Assert.IsNull(tree.Root);
-            Assert.IsFalse(tree.Contains("All"));
+            Assert.IsFalse(tree.Contains("all"));
 
-            tree.AddWord((string)null, "All");
+            tree.AddWord((string)null, "all");
 
             Assert.IsNotNull(tree.Root);
-            Assert.AreEqual("All", tree.Root.KeyWord);
-            Assert.IsTrue(tree.Contains("All"));
-            Assert.AreEqual("All", tree.GetNode("All").KeyWord);
+            Assert.AreEqual("all", tree.Root.KeyWord);
+            Assert.IsTrue(tree.Contains("all"));
+            Assert.AreEqual("all", tree.GetNode("all").KeyWord);
         }
 
         [TestMethod]
@@ -41,22 +41,22 @@ namespace UnitTests {
             IBaseTree tree = new BaseTree();
 
             Assert.IsNull(tree.Root);
-            Assert.IsFalse(tree.Contains("All"));
+            Assert.IsFalse(tree.Contains("all"));
 
-            tree.AddWord((Node)null, "All");
+            tree.AddWord((Node)null, "all");
 
             Assert.IsNotNull(tree.Root);
-            Assert.AreEqual("All", tree.Root.KeyWord);
-            Assert.IsTrue(tree.Contains("All"));
-            Assert.AreEqual("All", tree.GetNode("All").KeyWord);
+            Assert.AreEqual("all", tree.Root.KeyWord);
+            Assert.IsTrue(tree.Contains("all"));
+            Assert.AreEqual("all", tree.GetNode("all").KeyWord);
         }
 
         [TestMethod]
         public void AddParentedNodesTest() {
             IBaseTree tree = new BaseTree();
 
-            String root = "World";
-            String child = "US";
+            String root = "world";
+            String child = "us";
 
             tree.AddWord((string)null, root);
             tree.AddWord(root, child);
@@ -113,7 +113,7 @@ namespace UnitTests {
             try {
                 tree.GetNode(child);
                 Assert.Fail();
-            } catch (KeyNotFoundException e) {
+            } catch (KeyNotFoundException) {
 
             }
         }
@@ -139,14 +139,14 @@ namespace UnitTests {
             try {
                 tree.GetNode(child);
                 Assert.Fail();
-            } catch (KeyNotFoundException e) {
+            } catch (KeyNotFoundException) {
 
             }
 
             try {
                 tree.GetNode(root);
                 Assert.Fail();
-            } catch (KeyNotFoundException e) {
+            } catch (KeyNotFoundException) {
 
             }
         }

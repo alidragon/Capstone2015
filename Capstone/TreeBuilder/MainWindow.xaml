@@ -1,25 +1,32 @@
 ﻿<Window x:Class="TreeBuilder.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:t="clr-namespace:TreeApi.Tree;assembly=TreeApi"
-        Title="Content Tree Builder" Height="350" Width="400">
+        xmlns:t="clr-namespace:TreeBuilder"
+        Title="Content Tree Builder" Height="350" Width="408">
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="Add" Click="Add_Click" Width="100">Add</Button>
-                <Button x:Name="Delete" Click="Delete_Click" Width="100">Delete</Button>
+                <Button x:Name="New" Click="New_Click" Width="100">New</Button>
                 <Button x:Name="Save" Click="Save_Click" Width="100">Save</Button>
                 <Button x:Name="Load" Click="Load_Click" Width="100">Load</Button>
+                <Button x:Name="Delete" Click="Delete_Click" Width="100">Delete</Button>
             </StackPanel>
-            <Label>Node List</Label>
-            <StackPanel x:Name="Buttons" Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal">
+                <Label Width="70" BorderThickness="1" BorderBrush="Black">Node List</Label>
+                <Border BorderThickness="1" BorderBrush="Black">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="80">Word to add:</Label>
+                        <TextBox x:Name="wordBox" Width="170"></TextBox>
+                        <Button x:Name="Add" Click="Add_Click" Width="80">Add</Button>
+                    </StackPanel>
+                </Border>
             </StackPanel>
-            <ScrollViewer Height="270" Width="390">
-                <TreeView>
+            <ScrollViewer Height="270" Width="398">
+                <TreeView x:Name="nodeList">
                     <TreeView.Resources>
-                        <HierarchicalDataTemplate DataType="{x:Type t:Node}"  ItemsSource="{Binding Members}">
+                        <HierarchicalDataTemplate DataType="{x:Type t:ViewableTreeNode}"  ItemsSource="{Binding Children}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding KeyWord}" />
+                                <Label Content="{Binding Keyword}" MouseDoubleClick="Node_MouseDoubleClick" />
                             </StackPanel>
                         </HierarchicalDataTemplate>
                     </TreeView.Resources>

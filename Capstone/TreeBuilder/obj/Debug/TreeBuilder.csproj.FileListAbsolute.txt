@@ -13,3 +13,8 @@ C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\De
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder.pdb
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\bin\Debug\TreeApi.dll
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\bin\Debug\TreeApi.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder_MarkupCompile.lref
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\Interop.VBScript_RegExp_10.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\Interop.VBScript_RegExp_55.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder.csproj.ResolveComReference.cache
