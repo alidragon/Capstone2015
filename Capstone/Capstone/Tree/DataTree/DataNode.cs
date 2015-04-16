@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TreeApi.Tree {
+    [Serializable]
     public class DataNode {
         public LinkedList<Connection> Children { get; set; }
         public string Keyword { get; set; }

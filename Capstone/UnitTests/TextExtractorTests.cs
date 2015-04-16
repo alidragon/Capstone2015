@@ -56,6 +56,12 @@ namespace UnitTests {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
+        public void NullContentTestWithTagOperator() {
+            ITextExtractor t = new TextExtractor(null, tag);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void NullTagTest() {
             ITextExtractor t = new TextExtractor(testString1, null);
         }

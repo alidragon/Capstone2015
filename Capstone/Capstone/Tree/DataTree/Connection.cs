@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace TreeApi.Tree {
+    [Serializable]
     public class Connection {
         public long Weight { get; set; }
         public DataNode EndPoint { get; set; }

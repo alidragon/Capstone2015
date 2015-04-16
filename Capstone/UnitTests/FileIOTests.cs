@@ -42,5 +42,33 @@ namespace UnitTests {
             IIO io = new FileIO();
             string result = io.ReadSource("");
         }
+
+        [TestMethod]
+        public void ReadFileIterableTest() {
+            IIO io = new FileIO();
+            IEnumerable<string> result = io.ReadSourceIterable(testpath);
+            Assert.IsFalse(result == null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ReadNullSourceIterable() {
+            IIO io = new FileIO();
+            IEnumerable<string> result = io.ReadSourceIterable(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ReadSourceIterableNonString() {
+            IIO io = new FileIO();
+            IEnumerable<string> result = io.ReadSourceIterable(new object());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ReadNonexistentFileIterable() {
+            IIO io = new FileIO();
+            IEnumerable<string> result = io.ReadSourceIterable("");
+        }
     }
 }

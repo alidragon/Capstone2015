@@ -7,5 +7,7 @@ using System.Threading.Tasks;
 namespace TextExtraction.IO {
     public interface IIO {
         String ReadSource(object source);
+
+        IEnumerable<String> ReadSourceIterable(object source);
     }
 }

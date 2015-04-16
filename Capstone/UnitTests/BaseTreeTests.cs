@@ -221,5 +221,34 @@ namespace UnitTests {
             tree.AddWord((string)null, root);
             tree.AddWord(root, root);
         }
+
+        [TestMethod]
+        public void GetEnumeratorTest() {
+            IBaseTree tree = new BaseTree();
+
+            String root = "World";
+
+            tree.AddWord((string)null, root);
+
+            IEnumerator<string> e = (IEnumerator<string>)tree.GetEnumerator();
+            Assert.IsNotNull(e);
+            e.MoveNext();
+            Assert.IsNotNull(e.Current);
+        }
+
+        [TestMethod]
+        public void RenameTest() {
+            IBaseTree tree = new BaseTree();
+
+            string root = "all";
+            string different = "different";
+
+            tree.AddWord((string)null, root);
+            Assert.AreEqual(root, tree.Root.KeyWord);
+
+            tree.Rename(root, different);
+
+            Assert.AreEqual(tree.Root.KeyWord, different);
+        }
     }
 }

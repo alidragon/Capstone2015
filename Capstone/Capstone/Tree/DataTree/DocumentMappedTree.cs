@@ -24,6 +24,10 @@ namespace TreeApi.Tree {
             this.BaseTree = tree;
         }
 
+        public IBaseTree GetBaseTree() {
+            return this.BaseTree;
+        }
+
         public void AddConnection(string word) {
             word = StringFunctions.Normalize(word);
             if (BaseTree.Contains(word)) {

@@ -8,5 +8,7 @@ namespace TreeApi.Tree.IO {
     public interface ITreeIO {
         void SaveBaseTree(IBaseTree tree, string location);
         IBaseTree LoadBaseTree(string location);
+        void SaveDataTree(IDataTree tree, string location);
+        IDataTree LoadDataTree(string location);
     }
 }
