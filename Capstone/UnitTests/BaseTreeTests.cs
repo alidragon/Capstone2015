@@ -230,7 +230,7 @@ namespace UnitTests {
 
             tree.AddWord((string)null, root);
 
-            IEnumerator<string> e = (IEnumerator<string>)tree.GetEnumerator();
+            IEnumerator<Node> e = (IEnumerator<Node>)tree.GetEnumerator();
             Assert.IsNotNull(e);
             e.MoveNext();
             Assert.IsNotNull(e.Current);

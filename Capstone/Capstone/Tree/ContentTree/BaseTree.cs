@@ -69,8 +69,8 @@ namespace TreeApi.Tree {
             }
         }
 
-        public IEnumerator<string> GetEnumerator() {
-            return treeNodes.Keys.GetEnumerator();
+        public IEnumerator<Node> GetEnumerator() {
+            return treeNodes.Values.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {

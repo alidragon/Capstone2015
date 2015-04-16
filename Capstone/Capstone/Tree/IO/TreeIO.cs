@@ -26,7 +26,6 @@ namespace TreeApi.Tree.IO {
             return tree;
         }
 
-
         public void SaveDataTree(IDataTree tree, string location) {
             SaveObject(tree, location);
         }
