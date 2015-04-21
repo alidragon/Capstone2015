@@ -13,5 +13,13 @@ namespace TreeApi.Tree {
             this.Keyword = word;
             Children = new LinkedList<Connection>();
         }
+
+        public override bool Equals(object obj) {
+            if (obj is DataNode) {
+                DataNode node = obj as DataNode;
+                return node.Keyword.Equals(this.Keyword);
+            }
+            return false;
+        }
     }
 }

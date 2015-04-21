@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TextExtraction.Extract {
-    public class TextExtractor : ITextExtractor {
+    public class XMLTextExtractor : ITextExtractor {
         private string startTag;
         private string endTag;
         private string tag;
-        public string EnclosingTag {
+        public string Tag {
             get {
                 return tag;
             }
@@ -22,21 +22,21 @@ namespace TextExtraction.Extract {
         private string AllContent { get; set; }
 
         private int position = 0;
-        public TextExtractor(string content) {
+        public XMLTextExtractor(string content) {
             if (content == null) {
                 throw new ArgumentNullException("Content cannot be null.");
             }
             AllContent = content;
         }
 
-        public TextExtractor(string content, string tag) {
+        public XMLTextExtractor(string content, string tag) {
             if (content == null) {
                 throw new ArgumentNullException("Content cannot be null.");
             } else if (string.IsNullOrEmpty(tag)) {
                 throw new ArgumentNullException("Tag may not be null or empty");
             }
             AllContent = content;
-            EnclosingTag = tag;
+            Tag = tag;
         }
 
         public string FindNextContent() {

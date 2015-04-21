@@ -33,7 +33,7 @@ namespace TextExtraction.IO {
             if (!File.Exists(path)) {
                 throw new InvalidOperationException("Path must lead to an existing file.");
             }
-            return File.ReadAllLines(path);
+            return File.ReadLines(path);
         }
     }
 }

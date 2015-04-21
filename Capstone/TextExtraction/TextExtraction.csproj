@@ -45,10 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extract\BeginMarkerExtraction.cs" />
     <Compile Include="IO\FileIO.cs" />
     <Compile Include="IO\IIO.cs" />
     <Compile Include="Extract\ITextExtractor.cs" />
-    <Compile Include="Extract\TextExtractor.cs" />
+    <Compile Include="Extract\XMLTextExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

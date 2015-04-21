@@ -1,0 +1,13 @@
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\DocumentScanner.exe.config
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\DocumentScanner.exe
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\DocumentScanner.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner.csprojResolveAssemblyReference.cache
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\MainWindow.baml
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\MainWindow.g.cs
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\App.g.cs
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner_MarkupCompile.cache
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner.g.resources
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner.Properties.Resources.resources
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner.csproj.GenerateResource.Cache
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner.exe
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner.pdb

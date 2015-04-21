@@ -34,9 +34,9 @@ namespace UnitTests {
 
         [TestMethod]
         public void TextExtractionTest() {
-            ITextExtractor t = new TextExtractor(testString1, tag);
+            ITextExtractor t = new XMLTextExtractor(testString1, tag);
             Assert.IsTrue(t.HasNextContent());
-            Assert.IsNotNull(t.EnclosingTag);
+            Assert.IsNotNull(t.Tag);
 
             for (int i = 0; i < 3; i++) {
                 Assert.IsTrue(t.HasNextContent());
@@ -51,66 +51,66 @@ namespace UnitTests {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullContentTest() {
-            ITextExtractor t = new TextExtractor(null);
+            ITextExtractor t = new XMLTextExtractor(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullContentTestWithTagOperator() {
-            ITextExtractor t = new TextExtractor(null, tag);
+            ITextExtractor t = new XMLTextExtractor(null, tag);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullTagTest() {
-            ITextExtractor t = new TextExtractor(testString1, null);
+            ITextExtractor t = new XMLTextExtractor(testString1, null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void EmptyTagTest() {
-            ITextExtractor t = new TextExtractor(testString1, "");
+            ITextExtractor t = new XMLTextExtractor(testString1, "");
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void NullTagAssignedLaterTest() {
-            ITextExtractor t = new TextExtractor(testString1);
-            t.EnclosingTag = null;
+            ITextExtractor t = new XMLTextExtractor(testString1);
+            t.Tag = null;
             t.FindNextContent();
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void EmptyTagAssignedLaterTest() {
-            ITextExtractor t = new TextExtractor(testString1);
-            t.EnclosingTag = "";
+            ITextExtractor t = new XMLTextExtractor(testString1);
+            t.Tag = "";
             t.FindNextContent();
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void NullTagAssignedLaterSecondConstTest() {
-            ITextExtractor t = new TextExtractor(testString1, tag);
-            t.EnclosingTag = null;
+            ITextExtractor t = new XMLTextExtractor(testString1, tag);
+            t.Tag = null;
             t.FindNextContent();
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void EmptyTagAssignedLaterSecondConstTest() {
-            ITextExtractor t = new TextExtractor(testString1, tag);
-            t.EnclosingTag = "";
+            ITextExtractor t = new XMLTextExtractor(testString1, tag);
+            t.Tag = "";
             t.FindNextContent();
         }
 
         [TestMethod]
         public void TagSwitchTest() {
-            ITextExtractor t = new TextExtractor(testString1, tag);
+            ITextExtractor t = new XMLTextExtractor(testString1, tag);
             Assert.IsTrue(t.HasNextContent());
-            Assert.IsNotNull(t.EnclosingTag);
+            Assert.IsNotNull(t.Tag);
             t.FindNextContent();
-            t.EnclosingTag = tag2;
+            t.Tag = tag2;
 
             for (int i = 1; i < 3; i++) {
                 Assert.IsTrue(t.HasNextContent());
@@ -124,7 +124,7 @@ namespace UnitTests {
 
         [TestMethod]
         public void NonexistentTagTest() {
-            ITextExtractor t = new TextExtractor(testString1, nonexistentTag);
+            ITextExtractor t = new XMLTextExtractor(testString1, nonexistentTag);
             Assert.IsFalse(t.HasNextContent());
             Assert.IsNull(t.FindNextContent());
         }

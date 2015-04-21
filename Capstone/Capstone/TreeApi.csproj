@@ -48,6 +48,7 @@
     <Compile Include="StringFunctions.cs" />
     <Compile Include="Tree\ContentTree\BaseTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tree\DataTree\Comparison\Comparator.cs" />
     <Compile Include="Tree\DataTree\Connection.cs" />
     <Compile Include="Tree\DataTree\DataNode.cs" />
     <Compile Include="Tree\ContentTree\IBaseTree.cs" />
@@ -63,6 +64,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

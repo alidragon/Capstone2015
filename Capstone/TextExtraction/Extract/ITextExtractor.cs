@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TextExtraction.Extract {
     public interface ITextExtractor {
 
-        string EnclosingTag { get; set; }
+        string Tag { get; set; }
 
         string FindNextContent();
         bool HasNextContent();
