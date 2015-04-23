@@ -44,6 +44,8 @@ namespace TreeApi.Tree.IO {
         }
 
         public void SaveObject(object o, string location) {
+            string dir = Path.GetDirectoryName(location);
+            Directory.CreateDirectory(dir);
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(location, FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, o);

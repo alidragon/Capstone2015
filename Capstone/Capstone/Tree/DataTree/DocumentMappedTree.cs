@@ -13,7 +13,7 @@ namespace TreeApi.Tree {
         [NonSerialized]
         private IBaseTree BaseTree;
 
-        public long Words { get; set; }
+        public long MappedWords { get; set; }
 
         public DocumentMappedTree(IBaseTree tree) {
             BaseTree = tree;
@@ -31,7 +31,7 @@ namespace TreeApi.Tree {
         public void AddConnection(string word) {
             word = StringFunctions.Normalize(word);
             if (BaseTree.Contains(word)) {
-                Words++;
+                MappedWords++;
                 if(word != Root.Keyword) {
                     Node parent = BaseTree.GetNode(word).Parent;
                     AddConnection(parent.KeyWord, word);
@@ -59,6 +59,11 @@ namespace TreeApi.Tree {
                 parentNode.Children.AddFirst(c);
             }
             return childNode;
+        }
+
+        public string Name {
+            get;
+            set;
         }
     }
 }

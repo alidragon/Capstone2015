@@ -79,6 +79,7 @@ namespace TreeApi.Tree {
 
 
         public void Rename(string original, string newWord) {
+            newWord = StringFunctions.Normalize(newWord);
             Node node = GetNode(original);
             treeNodes.Remove(original);
             node.KeyWord = newWord;

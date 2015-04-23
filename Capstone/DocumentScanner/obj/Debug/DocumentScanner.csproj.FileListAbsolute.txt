@@ -11,3 +11,13 @@ C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\ob
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner.csproj.GenerateResource.Cache
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner.exe
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\TextExtraction.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\TreeApi.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\TreeApi.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\TextExtraction.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\obj\Debug\DocumentScanner_MarkupCompile.lref
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\Ookii.Dialogs.Wpf.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\Ookii.Dialogs.Wpf.xml

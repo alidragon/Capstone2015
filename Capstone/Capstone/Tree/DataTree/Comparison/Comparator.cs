@@ -7,15 +7,15 @@ using TreeApi.Tree;
 
 namespace Capstone.Tree.DataTree.Comparison {
     public static class Comparator {
-        private const int COMPARE_VALUE = 1;
-        private const int BRANCH_WEIGHT_VALUE = 2;
+        private const double COMPARE_VALUE = .9;
+        private const double BRANCH_WEIGHT_VALUE = 2.7;
 
         public static bool CompareTo(this IDataTree one, IDataTree two) {
-            double dif = Dif(one.Root, two.Root, one.Words, two.Words);
+            double dif = Dif(one.Root, two.Root, one.MappedWords, two.MappedWords);
             return dif < COMPARE_VALUE;
         }
 
-        private static double Dif(DataNode rootOrig, DataNode rootComp, long totalOne, long totalTwo) {
+        private static double Dif(DataNode rootOrig, DataNode rootComp, double totalOne, double totalTwo) {
             double dif = 0;
             
             if (rootOrig.Children.Count > 0) {
@@ -39,7 +39,7 @@ namespace Capstone.Tree.DataTree.Comparison {
                     foreach (Connection child in rootOrig.Children) {
                         var temp = rootComp.Children.Where(c => c.EndPoint.Equals(child.EndPoint)).FirstOrDefault();
                         if (temp != null) {
-                            dif += Dif(child.EndPoint, temp.EndPoint, totalOne / BRANCH_WEIGHT_VALUE, totalTwo / BRANCH_WEIGHT_VALUE);
+                            dif += Dif(child.EndPoint, temp.EndPoint, totalOne * BRANCH_WEIGHT_VALUE, totalTwo * BRANCH_WEIGHT_VALUE);
                         }
                     }
                 }

@@ -13,7 +13,7 @@ namespace TreeApi {
             }
             s = s.ToLower();
             s.Trim();
-            Regex notCharacter = new Regex("\\W");
+            Regex notCharacter = new Regex("[^\\w\\s]");
             return notCharacter.Replace(s, "");
         }
     }
