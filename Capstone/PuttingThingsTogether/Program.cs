@@ -16,11 +16,16 @@ namespace PuttingThingsTogether {
         static string testpath = @"G:\Data\time\";
 
         static void Main(string[] args) {
-            Compare();
+            RunComparison("TimeStem.tree");
         }
 
-        public static void Compare() {
-            Console.SetBufferSize(100, 1000);
+        public static void RunComparison(string contentTreeName) {
+            MakeTrees(contentTreeName);
+            Compare(contentTreeName);
+        }
+
+        public static void Compare(string contentTreeName) {
+            Console.SetBufferSize(100, 2000);
             IIO io = new FileIO();
             IEnumerable<string> file = io.ReadSourceIterable(testpath + "TIME.QUE");
             IEnumerable<string> expectedResults = io.ReadSourceIterable(testpath + "TIME.REL");
@@ -28,60 +33,114 @@ namespace PuttingThingsTogether {
             ITextExtractor it = new BeginMarkerExtraction(file, "*FIND");
 
             ITreeIO tio = new TreeIO();
-            IBaseTree tree = tio.LoadBaseTree(testpath + "TIME.tree");
+            IBaseTree tree = tio.LoadBaseTree(testpath + contentTreeName);
+            double totalRecall = 0;
+            double totalPrecision = 0;
+            double bestRecall = -1;
+            double worstRecall = 2;
+            double bestPrecision = -1;
+            double worstPrecision = 2;
+            double count = 0;
             while (it.HasNextContent()) {
                 string query = it.FindNextContent();
                 Console.WriteLine("---------------------------------");
-                Console.WriteLine("Query: " + Helpers.GetNameWhenFirst(query));
+                string queryName = Helpers.GetNameWhenFirst(query);
+                Console.WriteLine("Query: " + queryName);
                 query = Helpers.ConsumeName(query);
 
                 Console.WriteLine(query);
 
-                IDataTree queryTree = DataTreeBuilder.CreateDocumentMappedTree(tree);
-                DataTreeBuilder.AddToDataTree(queryTree, query);
+                IDataTree queryTree = DataTreeBuilder.CreateStemmedDocumentMapTree(tree);
+                DataTreeBuilder.AddToDataTreeBoyerMoore(queryTree, query);
 
                 Console.WriteLine("Expected Results: ");
                 while(string.IsNullOrEmpty(resultsEnum.Current))
                     resultsEnum.MoveNext();
-                Console.WriteLine(Helpers.ConsumeName(resultsEnum.Current));
+                string expected = Helpers.ConsumeName(resultsEnum.Current);
+                Console.WriteLine(expected);
                 resultsEnum.MoveNext();
+
+                expected = expected.Trim();
+                string[] expectedArray = expected.Split(' ');
+                double relevant = 0;
+                double totalRetrieved = 0;
 
                 Console.WriteLine("Actual Results: ");
                 foreach(String s in Directory.EnumerateFiles(testpath + @"\datatrees")) {
                     IDataTree docTree = tio.LoadDataTree(s);
                     if (queryTree.CompareTo(docTree)) {
                         Console.Write(" " + docTree.Name);
+                        totalRetrieved++;
+                        if (expectedArray.Contains(docTree.Name)) {
+                            relevant++;
+                        }
                     }
                 }
                 Console.WriteLine();
+                Console.WriteLine("Precision: " + relevant + "/" + totalRetrieved );
+                Console.WriteLine("Recall: " + relevant + "/" + (expectedArray.Length));
+                Console.WriteLine();
+
+                count++;
+                double recall = relevant / expectedArray.Length;
+                double precision = 0;
+                if (totalRetrieved > 0) {
+                    precision = relevant / totalRetrieved;
+                }
+                totalPrecision += precision;
+                totalRecall += recall;
+
+                if (precision > bestPrecision) {
+                    bestPrecision = precision;
+                }
+                if (precision < worstPrecision) {
+                    worstPrecision = precision;
+                }
+
+                if(recall > bestRecall) {
+                    bestRecall = recall;
+                }
+                if(recall < worstRecall) {
+                    worstRecall = recall;
+                }
             }
+
+            Console.WriteLine("-------------------");
+            Console.WriteLine("Average Precision: " + totalPrecision / count);
+            Console.WriteLine("Average Recall: " + totalRecall / count);
+            Console.WriteLine("Worst Precision: " + worstPrecision);
+            Console.WriteLine("Worst Recall: " + worstRecall);
+            Console.WriteLine("Best Precision: " + bestPrecision);
+            Console.WriteLine("Best Recall: " + bestRecall);
         }
 
-        public static void MakeTrees() {
+        public static void MakeTrees(string contentTreeName) {
             IIO io = new FileIO();
             IEnumerable<string> file = io.ReadSourceIterable(testpath + "TIME.ALL");
             ITextExtractor it = new BeginMarkerExtraction(file, "*TEXT");
 
             ITreeIO tio = new TreeIO();
-            IBaseTree tree = tio.LoadBaseTree(testpath + "TIME.tree");
+            IBaseTree tree = tio.LoadBaseTree(testpath + contentTreeName);
             int count = 1;
             while (it.HasNextContent()) {
                 string content = it.FindNextContent();
-                Console.WriteLine("-----");
+                //Console.WriteLine("-----");
                 string name = "" + count;
-                Console.WriteLine(name);
+                //Console.WriteLine(name);
                 content = Helpers.ConsumeName(content);
-                Console.WriteLine(content);
+                //Console.WriteLine(content);
 
-                IDataTree datatree = DataTreeBuilder.CreateDocumentMappedTree(tree);
-                DataTreeBuilder.AddToDataTree(datatree, content);
+                IDataTree datatree = DataTreeBuilder.CreateStemmedDocumentMapTree(tree);
+                DataTreeBuilder.AddToDataTreeBoyerMoore(datatree, content);
                 datatree.Name = name;
 
                 tio.SaveDataTree(datatree, testpath + @"\datatrees\" + name + ".dtree");
 
-                Console.WriteLine(datatree.MappedWords);
+                //Console.WriteLine(datatree.MappedWords);
                 count++;
             }
         }
+
+
     }
 }

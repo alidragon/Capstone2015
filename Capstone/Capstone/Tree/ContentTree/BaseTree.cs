@@ -83,7 +83,9 @@ namespace TreeApi.Tree {
             Node node = GetNode(original);
             treeNodes.Remove(original);
             node.KeyWord = newWord;
-            treeNodes.Add(node.KeyWord, node);
+            if (!Contains(node.KeyWord)) {
+                treeNodes.Add(node.KeyWord, node);
+            }
         }
     }
 }

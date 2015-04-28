@@ -21,3 +21,4 @@ C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bi
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\Ookii.Dialogs.Wpf.dll
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\Microsoft.WindowsAPICodePack.xml
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\Ookii.Dialogs.Wpf.xml
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\DocumentScanner\bin\Debug\StemmersNet.dll

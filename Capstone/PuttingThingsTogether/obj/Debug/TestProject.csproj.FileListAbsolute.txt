@@ -8,3 +8,12 @@ C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsToget
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\obj\Debug\TestProject.csprojResolveAssemblyReference.cache
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\obj\Debug\PuttingThingsTogether.exe
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\obj\Debug\PuttingThingsTogether.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\AForge.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\AForge.Genetic.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\AForge.Math.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\AForge.Neuro.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\StemmersNet.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\AForge.xml
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\AForge.Genetic.xml
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\AForge.Math.xml
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\PuttingThingsTogether\bin\Debug\AForge.Neuro.xml

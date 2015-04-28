@@ -37,7 +37,7 @@ namespace TreeApi.Tree {
                     AddConnection(parent.KeyWord, word);
                 }
 
-            } //else ignore
+            } //else... do nothing
         }
 
         private DataNode AddConnection(string parent, string child) {

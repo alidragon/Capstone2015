@@ -18,3 +18,4 @@ C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\De
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\Interop.VBScript_RegExp_10.dll
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\Interop.VBScript_RegExp_55.dll
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\obj\Debug\TreeBuilder.csproj.ResolveComReference.cache
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TreeBuilder\bin\Debug\StemmersNet.dll

@@ -105,17 +105,14 @@ namespace DocumentScanner {
                     dial.Description = "Analyzing text...";
                     IIO io = new FileIO();
                     ITextExtractor it = null;
-                    bool named = true;
                     switch (formatBox.SelectedIndex) {
                         case 0:
                             string text = io.ReadSource(filename);
                             it = new XMLTextExtractor(text, documentFormatBox.Text);
-                            named = false;
                             break;
                         case 1:
                             var texts = io.ReadSourceIterable(filename);
                             it = new BeginMarkerExtraction(texts, documentFormatBox.Text);
-                            named = true;
                             break;
                         default:
                             throw new InvalidOperationException();

@@ -7,3 +7,4 @@ C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debu
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\TextExtraction.dll
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\TreeApi.dll
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\TreeApi.pdb
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\UnitTests\bin\Debug\StemmersNet.dll
