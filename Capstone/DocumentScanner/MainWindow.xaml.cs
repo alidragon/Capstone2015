@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Capstone.Tree.DataTree.Comparison;
+using Microsoft.Win32;
 using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
@@ -165,6 +166,80 @@ namespace DocumentScanner {
                 documentList.ItemsSource = documents;
             }
         }
+
+        private void queryButton_Click(object sender, RoutedEventArgs e) {
+            if (documents == null || documents.Count < 1) {
+                MessageBox.Show("Please load a directory with 1 or more data trees before querying");
+            }
+            if (baseTree == null) {
+                MessageBox.Show("Please load a content tree before querying.");
+            }
+            queryPopup.IsOpen = true;
+        }
+
+        private void queryOkay_Click(object sender, RoutedEventArgs e) {
+            string query = queryBox.Text;
+            List<string> matches = new List<string>();
+            using (Ookii.Dialogs.Wpf.ProgressDialog dial = new ProgressDialog()) {
+                IDataTree queryTree = DataTreeBuilder.CreateDocumentMappedTree(baseTree);
+                DataTreeBuilder.AddToDataTreeBoyerMoore(queryTree, query);
+
+                ITreeIO tio = new TreeIO();
+                foreach (String s in Directory.EnumerateFiles(documentLabel.Content.ToString())) {
+                    IDataTree docTree = tio.LoadDataTree(s);
+                    if (queryTree.CompareTo(docTree)) {
+                        matches.Add(s);
+                    }
+                }
+            }
+
+            if (matches.Count > 0) {
+                StringBuilder sb = new StringBuilder("Documents which match \"" + query + "\":");
+                foreach (string s in matches) {
+                    string s2 = System.IO.Path.GetFileName(s);
+                    s2 = new string(s2.Take(s2.LastIndexOf('.')).ToArray());
+                    documents.Add(s2);
+                    sb.Append(" " + s2);
+                }
+                MessageBox.Show(sb.ToString());
+            } else {
+                MessageBox.Show("No documents match the query \"" + query + "\"");
+            }
+            queryPopup.IsOpen = false;
+        }
+
+        private void compareButton_Click(object sender, RoutedEventArgs e) {
+            MessageBox.Show("Please select first tree");
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.FileName = "Tree";
+            ofd.DefaultExt = ".dtree";
+            ofd.Filter = "Data Tree Files (.dtree)|*.dtree";
+
+            Nullable<bool> result = ofd.ShowDialog();
+
+            if (result == true) {
+                string filename = ofd.FileName;
+                TreeIO io = new TreeIO();
+                IDataTree tree = io.LoadDataTree(filename);
+
+
+                MessageBox.Show("Please select a second tree");
+
+                result = ofd.ShowDialog();
+
+                if (result == true) {
+                    string filename2 = ofd.FileName;
+                    IDataTree tree2 = io.LoadDataTree(filename2);
+
+                    if (tree.CompareTo(tree2)) {
+                        MessageBox.Show("Your treees match");
+                    } else {
+                        MessageBox.Show("These trees do not match");
+                    }
+                }
+            }
+        }
+
 
     }
 }

@@ -21,7 +21,7 @@ namespace TreeApi.Tree.DataTree {
             }
             for (int i = 0; i < nodes.Count; i++) {
                 Node s = nodes[i];
-                baseTree.Rename(s.KeyWord, StringFunctions.StemmedWord(s.KeyWord));
+                baseTree.Rename(s, StringFunctions.StemmedWord(s.KeyWord));
             }
         }
 
@@ -58,7 +58,7 @@ namespace TreeApi.Tree.DataTree {
             }
             for (int i = 0; i < nodes.Count; i++) {
                 Node s = nodes[i];
-                baseTree.Rename(s.KeyWord, StringFunctions.StemmedWord(s.KeyWord));
+                baseTree.Rename(s, StringFunctions.StemmedWord(s.KeyWord));
             }
         }
 

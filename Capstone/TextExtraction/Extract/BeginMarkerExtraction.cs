@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TextExtraction.Extract {
-    public class BeginMarkerExtraction : ITextExtractor {
+    public class BeginMarkerExtraction : ITextExtractor, IEnumerator {
         private string tag;
         private IEnumerable<string> strings;
         private IEnumerator<string> content;
@@ -63,6 +64,20 @@ namespace TextExtraction.Extract {
                 }
             } while (!found && content.MoveNext());
             return found;
+        }
+
+        public object Current {
+            get;
+            set;
+        }
+
+        public bool MoveNext() {
+            Current = FindNextContent();
+            return Current == null;
+        }
+
+        public void Reset() {
+            throw new NotImplementedException();
         }
     }
 }

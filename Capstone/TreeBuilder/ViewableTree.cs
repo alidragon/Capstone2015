@@ -47,7 +47,7 @@ namespace TreeBuilder {
         }
 
         public void Add(ViewableTreeNode parent, string word) {
-            Node parentNode = tree.GetNode(parent.Keyword);
+            Node parentNode = parent.treeNode;
             Node childNode = new Node(word);
 
             tree.AddNode(parentNode, childNode);
@@ -60,27 +60,27 @@ namespace TreeBuilder {
             if (toRemove.Keyword == tree.Root.KeyWord) {
                 throw new InvalidOperationException();
             }
-            Node parent = tree.GetNode(toRemove.Keyword).Parent;
+            Node parent = toRemove.treeNode.Parent;
 
-            tree.RemoveNode(tree.GetNode(toRemove.Keyword));
+            tree.RemoveNode(toRemove.treeNode);
 
-            ViewableTreeNode parentViewable = FindParent(Root[0], toRemove.Keyword);
+            ViewableTreeNode parentViewable = FindParent(Root[0], toRemove);
             parentViewable.Children.Remove(toRemove);
         }
 
         public void Rename(ViewableTreeNode node, string newName) {
-            tree.Rename(node.Keyword, newName);
+            tree.Rename(node.treeNode, newName);
             node.Keyword = newName;
         }
 
-        private ViewableTreeNode FindParent(ViewableTreeNode current, string word) {
+        private ViewableTreeNode FindParent(ViewableTreeNode current, ViewableTreeNode child) {
             ViewableTreeNode toReturn = null;
             foreach (ViewableTreeNode node in current.Children) {
                 if (toReturn == null) {
-                    if (current.Children.Select(c => c.Keyword).Contains(word)) {
+                    if (current.Children.Contains(child)) {
                         toReturn = current;
                     } else {
-                        toReturn = FindParent(node, word);
+                        toReturn = FindParent(node, child);
                     }
                 }
             }
@@ -106,6 +106,8 @@ namespace TreeBuilder {
 
         public ObservableCollection<ViewableTreeNode> Children { get; set; }
 
+        public Node treeNode { get; set; }
+
         public ViewableTreeNode() {
             Children = new ObservableCollection<ViewableTreeNode>();
         }
@@ -113,6 +115,7 @@ namespace TreeBuilder {
         public ViewableTreeNode(Node n) {
             Children = new ObservableCollection<ViewableTreeNode>();
             this.Keyword = n.KeyWord;
+            this.treeNode = n;
         }
 
     }

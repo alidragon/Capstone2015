@@ -7,8 +7,8 @@ using TreeApi.Tree;
 
 namespace Capstone.Tree.DataTree.Comparison {
     public static class Comparator {
-        private const double COMPARE_VALUE = .9;
-        private const double BRANCH_WEIGHT_VALUE = 2.7;
+        private const double COMPARE_VALUE = 1;
+        private const double BRANCH_WEIGHT_VALUE = 2.1;
 
         public static bool CompareTo(this IDataTree one, IDataTree two) {
             double dif = Dif(one.Root, two.Root, one.MappedWords, two.MappedWords);

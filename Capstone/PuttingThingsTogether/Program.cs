@@ -16,7 +16,7 @@ namespace PuttingThingsTogether {
         static string testpath = @"G:\Data\time\";
 
         static void Main(string[] args) {
-            RunComparison("TimeStem.tree");
+            RunComparison("TreeV2.tree");
         }
 
         public static void RunComparison(string contentTreeName) {

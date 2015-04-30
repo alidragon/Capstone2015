@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using TreeApi.Tree.IO;
+using TreeApi.Tree.ContentTree;
 
 namespace TreeBuilder {
     /// <summary>
@@ -29,7 +30,7 @@ namespace TreeBuilder {
         public MainWindow() {
             InitializeComponent();
 
-            baseTree = new BaseTree();
+            baseTree = new DuplicatesAllowedBaseTree();
             baseTree.AddWord((string)null, "Root");
 
             tree = new ViewableTree(baseTree);
@@ -44,8 +45,6 @@ namespace TreeBuilder {
                 MessageBox.Show("You must select a parent before adding a word");
             } else if(string.IsNullOrEmpty(word)) {
                 MessageBox.Show("You must enter a word to add to the tree");
-            } else if(baseTree.Contains(word)) {
-                MessageBox.Show("All words must be unique");
             } else {
                 tree.Add(selected, word);
                 wordBox.Text = "";
@@ -101,7 +100,7 @@ namespace TreeBuilder {
         }
 
         private void New_Click(object sender, RoutedEventArgs e) {
-            baseTree = new BaseTree();
+            baseTree = new DuplicatesAllowedBaseTree();
             baseTree.AddWord((string)null, "Root");
 
             tree = new ViewableTree(baseTree);

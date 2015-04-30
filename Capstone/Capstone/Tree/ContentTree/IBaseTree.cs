@@ -14,7 +14,7 @@ namespace TreeApi.Tree {
         void AddWord(string parent, string word);
         bool Contains(string word);
         Node GetNode(string word);
-        void Rename(string original, string newWord);
+        void Rename(Node original, string newWord);
         /// <summary>
         /// Should remove the node and any child nodes from the tree
         /// </summary>

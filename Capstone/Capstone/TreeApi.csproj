@@ -51,6 +51,7 @@
     <Compile Include="StringFunctions.cs" />
     <Compile Include="Tree\ContentTree\BaseTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tree\ContentTree\DuplicatesAllowedBaseTree.cs" />
     <Compile Include="Tree\DataTree\Comparison\Comparator.cs" />
     <Compile Include="Tree\DataTree\Connection.cs" />
     <Compile Include="Tree\DataTree\DataNode.cs" />

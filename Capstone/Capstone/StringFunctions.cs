@@ -55,7 +55,12 @@ namespace TreeApi {
 
         public static string StemmedWord(string s) {
             IStemmer stemmer = new EnglishStemmer();
-            return stemmer.Stem(s);
+            string[] words = s.Split(' ');
+            StringBuilder sb = new StringBuilder();
+            foreach (string word in words) {
+                sb.Append(stemmer.Stem(word));
+            }
+            return sb.ToString();
         }
     }
 }

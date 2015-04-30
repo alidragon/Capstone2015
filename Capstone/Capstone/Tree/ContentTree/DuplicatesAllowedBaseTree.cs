@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TreeApi.Tree {
+namespace TreeApi.Tree.ContentTree {
     [Serializable]
-    public class BaseTree : IBaseTree {
-        private Dictionary<string, Node> treeNodes;
+    public class DuplicatesAllowedBaseTree : IBaseTree {
+        private Dictionary<string, List<Node>> treeNodes;
         public Node Root { get; set; }
 
-        public BaseTree() {
-            treeNodes = new Dictionary<string, Node>();
+        public DuplicatesAllowedBaseTree() {
+            treeNodes = new Dictionary<string, List<Node>>();
         }
 
         public void AddNode(Node parent, Node newNode) {
@@ -22,7 +22,11 @@ namespace TreeApi.Tree {
             }
             newNode.Parent = parent;
             newNode.KeyWord = StringFunctions.Normalize(newNode.KeyWord);
-            treeNodes.Add(newNode.KeyWord, newNode);
+            if (treeNodes.ContainsKey(newNode.KeyWord)) {
+                treeNodes[newNode.KeyWord].Add(newNode);
+            } else {
+                treeNodes.Add(newNode.KeyWord, new List<Node>() { newNode });
+            }
         }
 
         public void AddWord(Node parent, string word) {
@@ -37,24 +41,33 @@ namespace TreeApi.Tree {
                 throw new InvalidOperationException("Parent node must be contained within tree");
             }
             if (parent != null) {
-                parentNode = treeNodes[parent];
+                parentNode = treeNodes[parent].First();
             }
             AddWord(parentNode, word);
         }
 
         public bool Contains(string word) {
-            return treeNodes.Keys.Contains(StringFunctions.Normalize(word));
+            return treeNodes.ContainsKey(word);
         }
 
+        /// <summary>
+        /// returns the first node which has a keyword of word
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
         public Node GetNode(string word) {
-            return treeNodes[StringFunctions.Normalize(word)];
+            return treeNodes[word].First();
         }
 
         public void RemoveNode(Node toRemove) {
-            if (toRemove == null || !treeNodes.ContainsValue(toRemove)) {
+            if (toRemove == null || !treeNodes.ContainsKey(toRemove.KeyWord)) {
                 throw new InvalidOperationException();
             }
-            treeNodes.Remove(toRemove.KeyWord);
+            List<Node> keywordsList = treeNodes[toRemove.KeyWord];
+            keywordsList.Remove(toRemove);
+            if (keywordsList.Count == 0) {
+                treeNodes.Remove(toRemove.KeyWord);
+            }
             List<Node> remove = new List<Node>();
             foreach (string key in treeNodes.Keys) {
                 if (GetNode(key).Parent == toRemove) {
@@ -70,7 +83,11 @@ namespace TreeApi.Tree {
         }
 
         public IEnumerator<Node> GetEnumerator() {
-            return treeNodes.Values.GetEnumerator();
+            foreach (string s in treeNodes.Keys) {
+                foreach (Node n in treeNodes[s]) {
+                    yield return n;
+                }
+            }
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
@@ -78,12 +95,20 @@ namespace TreeApi.Tree {
         }
 
 
-        public void Rename(Node node, string newWord) {
+        public void Rename(Node original, string newWord) {
             newWord = StringFunctions.Normalize(newWord);
-            treeNodes.Remove(node.KeyWord);
-            node.KeyWord = newWord;
-            if (!Contains(node.KeyWord)) {
-                treeNodes.Add(node.KeyWord, node);
+
+            List<Node> keywordsList = treeNodes[original.KeyWord];
+            keywordsList.Remove(original);
+            if (keywordsList.Count == 0) {
+                treeNodes.Remove(original.KeyWord);
+            }
+
+            original.KeyWord = newWord;
+            if (treeNodes.ContainsKey(original.KeyWord)) {
+                treeNodes[original.KeyWord].Add(original);
+            } else {
+                treeNodes.Add(original.KeyWord, new List<Node>() { original });
             }
         }
     }

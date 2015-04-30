@@ -246,7 +246,7 @@ namespace UnitTests {
             tree.AddWord((string)null, root);
             Assert.AreEqual(root, tree.Root.KeyWord);
 
-            tree.Rename(root, different);
+            tree.Rename(tree.Root, different);
 
             Assert.AreEqual(tree.Root.KeyWord, different);
         }
