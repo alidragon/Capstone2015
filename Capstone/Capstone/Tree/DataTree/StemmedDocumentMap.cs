@@ -10,7 +10,7 @@ namespace TreeApi.Tree.DataTree {
         private IBaseTree baseTree;
         private IDataTree tree;
 
-        public StemmedDocumentMap(IDataTree tree) {
+        internal StemmedDocumentMap(IDataTree tree) {
             baseTree = tree.GetBaseTree();
             this.tree = tree;
 

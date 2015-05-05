@@ -55,12 +55,12 @@ namespace TreeApi.Tree {
                 throw new InvalidOperationException("Data Tree's base tree cannot be null");                
             }
 
+            content = StringFunctions.Normalize(content);
             foreach (Node n in dataTree.GetBaseTree()) {
-                content = StringFunctions.Normalize(content);
                 int matches = content.BoyerMooreMatchCount(n.KeyWord);
                 if (matches > 0) {
                     for(int i = 0; i < matches; i++) {
-                        dataTree.AddConnection(n.KeyWord);
+                        dataTree.AddConnection(n.KeyWord.Trim());
                     }
                 }
             }

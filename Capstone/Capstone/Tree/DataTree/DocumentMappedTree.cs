@@ -15,7 +15,7 @@ namespace TreeApi.Tree {
 
         public long MappedWords { get; set; }
 
-        public DocumentMappedTree(IBaseTree tree) {
+        internal DocumentMappedTree(IBaseTree tree) {
             BaseTree = tree;
             Root = new DataNode(tree.Root.KeyWord);
         }

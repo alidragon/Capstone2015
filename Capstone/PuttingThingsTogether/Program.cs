@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TextExtraction;
 using TextExtraction.Extract;
@@ -16,7 +17,9 @@ namespace PuttingThingsTogether {
         static string testpath = @"G:\Data\time\";
 
         static void Main(string[] args) {
-            RunComparison("TreeV2.tree");
+            //RunComparison("TreeV2.tree");
+            //MakeTrees("TreeV3.tree");
+            getDocsForQuery("TreeV3.tree");
         }
 
         public static void RunComparison(string contentTreeName) {
@@ -141,6 +144,84 @@ namespace PuttingThingsTogether {
             }
         }
 
+        public static void getDocsForQuery(string contentTreeName) {
+            Console.SetBufferSize(100, 2000);
+            IIO io = new FileIO();
+            IEnumerable<string> file = io.ReadSourceIterable(testpath + "TIME.QUE");
+            IEnumerable<string> expectedResults = io.ReadSourceIterable(testpath + "TIME.REL");
+            var resultsEnum = expectedResults.GetEnumerator();
+            ITextExtractor it = new BeginMarkerExtraction(file, "*FIND");
 
+            ITreeIO tio = new TreeIO();
+            IBaseTree tree = tio.LoadBaseTree(testpath + contentTreeName);
+
+            
+            
+            string query = it.FindNextContent();
+            Console.WriteLine("---------------------------------");
+            string queryName = Helpers.GetNameWhenFirst(query);
+            Console.WriteLine("Query: " + queryName);
+            query = Helpers.ConsumeName(query);
+
+            Console.WriteLine(query);
+
+            IDataTree queryTree = DataTreeBuilder.CreateStemmedDocumentMapTree(tree);
+            DataTreeBuilder.AddToDataTreeBoyerMoore(queryTree, query);
+
+            Console.WriteLine("Expected Results: ");
+            while (string.IsNullOrEmpty(resultsEnum.Current))
+                resultsEnum.MoveNext();
+            string expected = Helpers.ConsumeName(resultsEnum.Current);
+            Console.WriteLine(expected);
+            resultsEnum.MoveNext();
+
+            expected = expected.Trim();
+            string[] expectedArray = expected.Split(' ');
+            double relevant = 0;
+            double totalRetrieved = 0;
+
+            Console.WriteLine("Actual Results: ");
+            List<string> retrieved = new List<string>();
+            foreach (String s in Directory.EnumerateFiles(testpath + @"\datatrees")) {
+                IDataTree docTree = tio.LoadDataTree(s);
+                if (queryTree.CompareTo(docTree)) {
+                    Console.Write(" " + docTree.Name);
+                    retrieved.Add(docTree.Name);
+                    totalRetrieved++;
+                    if (expectedArray.Contains(docTree.Name)) {
+                        relevant++;
+                    }
+                }
+
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Precision: " + relevant + "/" + totalRetrieved);
+            Console.WriteLine("Recall: " + relevant + "/" + (expectedArray.Length));
+            Console.WriteLine();
+
+            Console.WriteLine("---------------------------------");
+            Thread.Sleep(10000);
+
+            IEnumerable<string> fileAll = io.ReadSourceIterable(testpath + "TIME.ALL");
+            ITextExtractor itAll = new BeginMarkerExtraction(fileAll, "*TEXT");
+
+            int count = 1;
+            while (itAll.HasNextContent()) {
+                string content = itAll.FindNextContent();
+                string name = "" + count;
+                if (retrieved.Contains(name) || expectedArray.ToList().Contains(name)) {
+                    Console.WriteLine("------------------------------------------------------------");
+                    Console.WriteLine("------------------------------------------------------------");
+                    Console.WriteLine(name);
+                    content = Helpers.ConsumeName(content);
+                    Console.WriteLine(content);
+                    Console.WriteLine("------------------------------------------------------------");
+                    Console.WriteLine("------------------------------------------------------------");
+                }
+
+                count++;
+            }
+        }
     }
 }
