@@ -57,6 +57,7 @@
     <Compile Include="Tree\DataTree\DataNode.cs" />
     <Compile Include="Tree\ContentTree\IBaseTree.cs" />
     <Compile Include="Tree\DataTree\DataTreeBuilder.cs" />
+    <Compile Include="Tree\DataTree\DataTreePrinter.cs" />
     <Compile Include="Tree\DataTree\IDataTree.cs" />
     <Compile Include="Tree\DataTree\StemmedDocumentMap.cs" />
     <Compile Include="Tree\IO\InvalidFileException.cs" />

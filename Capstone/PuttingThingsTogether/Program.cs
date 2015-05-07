@@ -11,15 +11,17 @@ using TextExtraction.Extract;
 using TextExtraction.IO;
 using TreeApi.Tree;
 using TreeApi.Tree.IO;
+using TreeApi.Tree.DataTree;
 
 namespace PuttingThingsTogether {
     public class Program {
         static string testpath = @"G:\Data\time\";
 
         static void Main(string[] args) {
-            //RunComparison("TreeV2.tree");
-            //MakeTrees("TreeV3.tree");
-            getDocsForQuery("TreeV3.tree");
+            //RunComparison("TreeV3.tree");
+            //MakeTrees("TreeV4.tree");
+            //getDocsForQuery("TreeV4.tree");
+            CompareAll();
         }
 
         public static void RunComparison(string contentTreeName) {
@@ -167,6 +169,7 @@ namespace PuttingThingsTogether {
 
             IDataTree queryTree = DataTreeBuilder.CreateStemmedDocumentMapTree(tree);
             DataTreeBuilder.AddToDataTreeBoyerMoore(queryTree, query);
+            queryTree.PrintDataTree();
 
             Console.WriteLine("Expected Results: ");
             while (string.IsNullOrEmpty(resultsEnum.Current))
@@ -191,6 +194,12 @@ namespace PuttingThingsTogether {
                     if (expectedArray.Contains(docTree.Name)) {
                         relevant++;
                     }
+                }
+                if (expectedArray.Contains(docTree.Name)) {
+                    Console.WriteLine("---");
+                    Console.WriteLine(docTree.Name);
+                    docTree.PrintDataTree();
+                    Console.WriteLine("---");
                 }
 
             }
@@ -222,6 +231,74 @@ namespace PuttingThingsTogether {
 
                 count++;
             }
+        }
+
+
+        public static void CompareAll() {
+            Console.SetBufferSize(100, 2000);
+            IIO io = new FileIO();
+            IEnumerable<string> expectedResults = io.ReadSourceIterable(testpath + "TIME.REL");
+
+            List<IEnumerable<string>> resPerLine = new List<IEnumerable<string>>();
+            foreach (string s in expectedResults) {
+                if (!string.IsNullOrEmpty(s)) {
+                    string answers = Helpers.ConsumeName(s);
+                    resPerLine.Add(answers.Split(' '));
+                }
+            }
+
+            double avgPrecision = 0;
+            double avgRecall = 0;
+            int numCounted = 0;
+
+            TreeIO tio = new TreeIO();
+            foreach (String s in Directory.EnumerateFiles(testpath + @"\datatrees")) {
+                IDataTree docTree = tio.LoadDataTree(s);
+                Console.WriteLine(docTree.Name + ":");
+                int count = 0;
+                List<string> matches = new List<string>();
+                foreach (String s2 in Directory.EnumerateFiles(testpath + @"\datatrees")) {
+                    if(s != s2) {
+                        IDataTree tree2 = tio.LoadDataTree(s2);
+                        if (docTree.CompareTo(tree2)) {
+                            Console.Write(tree2.Name + " ");
+                            count++;
+                            matches.Add(tree2.Name);
+                        }
+                    }
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("Count: " + count);
+
+                IEnumerable<IEnumerable<string>> containsTreeRes = resPerLine.Where(l => l.Contains(docTree.Name));
+                if (containsTreeRes.Count() > 0) {
+                    List<string> expectedMatches = new List<string>();
+                    foreach (IEnumerable<string> list in containsTreeRes) {
+                        foreach (string m in list) {
+                            expectedMatches.Add(m);
+                        }
+                    }
+                    expectedMatches = expectedMatches.Distinct().ToList();
+
+                    IEnumerable<string> foundExpected = matches.Intersect(expectedMatches);
+
+                    Console.WriteLine("Precision: " + foundExpected.Count() + "/" + matches.Count);
+                    Console.WriteLine("Recall: " + foundExpected.Count() + "/" + expectedMatches.Count);
+
+                    numCounted++;
+                    if (matches.Count > 0) {
+                        avgPrecision += ((double)foundExpected.Count()) / matches.Count;
+                    }
+                    avgRecall += ((double)foundExpected.Count()) / expectedMatches.Count;
+                }
+
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("-------");
+            Console.WriteLine("Average Precision: " + (avgPrecision / numCounted));
+            Console.WriteLine("Average Recall: " + (avgRecall / numCounted));
         }
     }
 }
