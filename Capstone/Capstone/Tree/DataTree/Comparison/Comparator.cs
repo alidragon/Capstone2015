@@ -7,7 +7,7 @@ using TreeApi.Tree;
 
 namespace Capstone.Tree.DataTree.Comparison {
     public static class Comparator {
-        private const double COMPARE_VALUE = .8;
+        private const double COMPARE_VALUE = .9;
         private const double BRANCH_WEIGHT_VALUE = 1.5;
         //private const double IRREL_WEIGHT_VALUE = 1.5;
 

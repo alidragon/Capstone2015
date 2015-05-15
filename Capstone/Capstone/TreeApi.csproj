@@ -51,6 +51,8 @@
     <Compile Include="StringFunctions.cs" />
     <Compile Include="Tree\ContentTree\BaseTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tree\ContentTree\ContentSuggestor.cs" />
+    <Compile Include="Tree\ContentTree\Document.cs" />
     <Compile Include="Tree\ContentTree\DuplicatesAllowedBaseTree.cs" />
     <Compile Include="Tree\DataTree\Comparison\Comparator.cs" />
     <Compile Include="Tree\DataTree\Connection.cs" />
@@ -70,7 +72,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TextExtraction\TextExtraction.csproj">
+      <Project>{a4895b82-7150-4c78-9676-1ad1de79eea5}</Project>
+      <Name>TextExtraction</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

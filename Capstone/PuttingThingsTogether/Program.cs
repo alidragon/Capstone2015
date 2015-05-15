@@ -12,16 +12,18 @@ using TextExtraction.IO;
 using TreeApi.Tree;
 using TreeApi.Tree.IO;
 using TreeApi.Tree.DataTree;
+using TreeApi.Tree.ContentTree;
 
 namespace PuttingThingsTogether {
     public class Program {
         static string testpath = @"G:\Data\time\";
 
         static void Main(string[] args) {
-            //RunComparison("TreeV3.tree");
-            //MakeTrees("TreeV4.tree");
+            //RunComparison("TreeV5.tree");
+            //MakeTrees("flatTree.tree");
             //getDocsForQuery("TreeV4.tree");
-            CompareAll();
+            //CompareAll();
+            TestSuggestions();
         }
 
         public static void RunComparison(string contentTreeName) {
@@ -299,6 +301,20 @@ namespace PuttingThingsTogether {
             Console.WriteLine("-------");
             Console.WriteLine("Average Precision: " + (avgPrecision / numCounted));
             Console.WriteLine("Average Recall: " + (avgRecall / numCounted));
+        }
+
+
+        public static void TestSuggestions() {
+            IIO io = new FileIO();
+            IEnumerable<string> file = io.ReadSourceIterable(testpath + "TIME.ALL");
+            ITextExtractor it = new BeginMarkerExtraction(file, "*TEXT");
+
+            WordSuggestor ws = new WordSuggestor();
+            ws.AddAllStemmed(it);
+            var words = ws.Suggestions(.2);
+            foreach (string s in words) {
+                Console.WriteLine(s);
+            }
         }
     }
 }

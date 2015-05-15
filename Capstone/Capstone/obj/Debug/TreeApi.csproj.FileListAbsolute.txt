@@ -5,3 +5,5 @@ C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\obj\Debug
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\obj\Debug\TreeApi.pdb
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\obj\Debug\TreeApi.csprojResolveAssemblyReference.cache
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\bin\Debug\StemmersNet.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\bin\Debug\TextExtraction.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\Capstone\bin\Debug\TextExtraction.pdb

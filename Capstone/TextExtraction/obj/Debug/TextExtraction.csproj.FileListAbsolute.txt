@@ -1,6 +1,5 @@
-C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TextExtraction\obj\Debug\TextExtraction.csprojResolveAssemblyReference.cache
-C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TextExtraction\bin\Debug\TextExtraction.pdb
-C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TextExtraction\obj\Debug\TextExtraction.pdb
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TextExtraction\bin\Debug\TextExtraction.dll.config
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TextExtraction\bin\Debug\TextExtraction.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TextExtraction\bin\Debug\TextExtraction.pdb
 C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TextExtraction\obj\Debug\TextExtraction.dll
+C:\Users\Sean Palmer\Documents\Capstone\Capstone2015\Capstone\TextExtraction\obj\Debug\TextExtraction.pdb

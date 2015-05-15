@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TextExtraction.Extract {
-    public class BeginMarkerExtraction : ITextExtractor, IEnumerator {
+    public class BeginMarkerExtraction : ITextExtractor {
         private string tag;
         private IEnumerable<string> strings;
         private IEnumerator<string> content;
@@ -41,11 +41,11 @@ namespace TextExtraction.Extract {
             }
             s.Append(content.Current.Substring(content.Current.IndexOf(tag) + tag.Length));
             while (content.MoveNext() && !content.Current.Contains(tag)) {
-                s.Append("\n");
+                s.Append("\n ");
                 s.Append(content.Current);
             }
             if (content.Current != null) {
-                s.Append("\n");
+                s.Append("\n ");
                 s.Append(content.Current.Split(tag.ToCharArray())[0]);
             }
             return s.ToString();
@@ -66,18 +66,26 @@ namespace TextExtraction.Extract {
             return found;
         }
 
-        public object Current {
-            get;
-            set;
-        }
-
         public bool MoveNext() {
             Current = FindNextContent();
-            return Current == null;
+            return Current != null;
         }
 
         public void Reset() {
             throw new NotImplementedException();
+        }
+
+        public string Current {
+            get;
+            set;
+        }
+
+        public void Dispose() {
+            throw new NotImplementedException();
+        }
+
+        object IEnumerator.Current {
+            get { throw new NotImplementedException(); }
         }
     }
 }

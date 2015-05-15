@@ -60,5 +60,27 @@ namespace TextExtraction.Extract {
             int endPos = AllContent.IndexOf(endTag, position);
             return nextPos != -1 && endPos != -1;
         }
+
+        public bool MoveNext() {
+            Current = FindNextContent();
+            return Current != null;
+        }
+
+        public void Reset() {
+            throw new NotImplementedException();
+        }
+
+        public string Current {
+            get;
+            set;
+        }
+
+        public void Dispose() {
+            throw new NotImplementedException();
+        }
+
+        object System.Collections.IEnumerator.Current {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

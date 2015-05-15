@@ -13,9 +13,9 @@ namespace TreeApi {
                 return null;
             }
             s = s.ToLower();
-            s.Trim();
-            Regex notCharacter = new Regex("[^\\w\\s]");
-            return notCharacter.Replace(s, "");
+            Regex notCharacter = new Regex(@"[^\w\s]");
+            s = notCharacter.Replace(s, "");
+            return s.Trim();
         }
 
         public static int BoyerMooreMatchCount(this string one, string pattern) {
