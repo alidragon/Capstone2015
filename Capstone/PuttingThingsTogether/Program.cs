@@ -19,11 +19,12 @@ namespace PuttingThingsTogether {
         static string testpath = @"G:\Data\time\";
 
         static void Main(string[] args) {
-            //RunComparison("TreeV5.tree");
+            //RunComparison("TreeV5.2.tree");
             //MakeTrees("flatTree.tree");
-            //getDocsForQuery("TreeV4.tree");
-            //CompareAll();
-            TestSuggestions();
+            //getDocsForQuery("TreeV5.tree");
+            CompareAll();
+            //TestSuggestions();
+            //Compare("TreeV5.tree");
         }
 
         public static void RunComparison(string contentTreeName) {
@@ -196,9 +197,14 @@ namespace PuttingThingsTogether {
                     if (expectedArray.Contains(docTree.Name)) {
                         relevant++;
                     }
+
+                    Console.WriteLine("Found---");
+                    Console.WriteLine(docTree.Name);
+                    docTree.PrintDataTree();
+                    Console.WriteLine("---");
                 }
                 if (expectedArray.Contains(docTree.Name)) {
-                    Console.WriteLine("---");
+                    Console.WriteLine("Expected---");
                     Console.WriteLine(docTree.Name);
                     docTree.PrintDataTree();
                     Console.WriteLine("---");
@@ -217,22 +223,22 @@ namespace PuttingThingsTogether {
             IEnumerable<string> fileAll = io.ReadSourceIterable(testpath + "TIME.ALL");
             ITextExtractor itAll = new BeginMarkerExtraction(fileAll, "*TEXT");
 
-            int count = 1;
-            while (itAll.HasNextContent()) {
-                string content = itAll.FindNextContent();
-                string name = "" + count;
-                if (retrieved.Contains(name) || expectedArray.ToList().Contains(name)) {
-                    Console.WriteLine("------------------------------------------------------------");
-                    Console.WriteLine("------------------------------------------------------------");
-                    Console.WriteLine(name);
-                    content = Helpers.ConsumeName(content);
-                    Console.WriteLine(content);
-                    Console.WriteLine("------------------------------------------------------------");
-                    Console.WriteLine("------------------------------------------------------------");
-                }
+            //int count = 1;
+            //while (itAll.HasNextContent()) {
+            //    string content = itAll.FindNextContent();
+            //    string name = "" + count;
+            //    if (retrieved.Contains(name) || expectedArray.ToList().Contains(name)) {
+            //        Console.WriteLine("------------------------------------------------------------");
+            //        Console.WriteLine("------------------------------------------------------------");
+            //        Console.WriteLine(name);
+            //        content = Helpers.ConsumeName(content);
+            //        Console.WriteLine(content);
+            //        Console.WriteLine("------------------------------------------------------------");
+            //        Console.WriteLine("------------------------------------------------------------");
+            //    }
 
-                count++;
-            }
+            //    count++;
+            //}
         }
 
 
