@@ -10,5 +10,8 @@ namespace TreeApi.Tree.IO {
         IBaseTree LoadBaseTree(string location);
         void SaveDataTree(IDataTree tree, string location);
         IDataTree LoadDataTree(string location);
+
+        void SaveObject(object o, string location);
+        object LoadObject(string location);
     }
 }

@@ -21,7 +21,7 @@ namespace TreeApi {
         public static int BoyerMooreMatchCount(this string one, string pattern) {
             int count = 0;
             int position = pattern.Length - 1;
-            pattern = pattern.Trim();
+            //pattern = pattern.Trim();
             Dictionary<char, int> table = MakeBoyerMooreTable(pattern);
             while (position < one.Length) {
                 bool cont = true;

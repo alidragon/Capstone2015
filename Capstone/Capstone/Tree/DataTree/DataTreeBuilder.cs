@@ -56,8 +56,12 @@ namespace TreeApi.Tree {
             }
 
             content = StringFunctions.Normalize(content);
+            if (dataTree is StemmedDocumentMap) {
+                content = StringFunctions.StemmedWord(content);
+            }
             foreach (Node n in dataTree.GetBaseTree()) {
-                int matches = content.BoyerMooreMatchCount(n.KeyWord);
+                //int matches = content.BoyerMooreMatchCount(n.KeyWord);
+                int matches = content.BoyerMooreMatchCount(" " + n.KeyWord + " ");
                 if (matches > 0) {
                     for(int i = 0; i < matches; i++) {
                         dataTree.AddConnection(n.KeyWord.Trim());

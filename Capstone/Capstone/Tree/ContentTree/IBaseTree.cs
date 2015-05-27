@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TreeApi.Tree {
-    public interface IBaseTree : IEnumerable {
+    public interface IBaseTree : IEnumerable<Node> {
         Node Root { get; set; }
 
         void AddNode(Node parent, Node newNode);

@@ -19,12 +19,18 @@ namespace PuttingThingsTogether {
         static string testpath = @"G:\Data\time\";
 
         static void Main(string[] args) {
-            //RunComparison("TreeV5.2.tree");
+            //RunComparison("TreeV5.3.tree");
             //MakeTrees("flatTree.tree");
             //getDocsForQuery("TreeV5.tree");
-            CompareAll();
+            //CompareAll();
             //TestSuggestions();
-            //Compare("TreeV5.tree");
+            //TestWordSuggestions();
+            //Compare("TreeV5.2.tree");
+            Console.WriteLine("Building suggestor table");
+            BuildSuggestor();
+            Console.WriteLine("Building tree");
+            BuildContentTree();
+
         }
 
         public static void RunComparison(string contentTreeName) {
@@ -33,7 +39,7 @@ namespace PuttingThingsTogether {
         }
 
         public static void Compare(string contentTreeName) {
-            Console.SetBufferSize(100, 2000);
+            Console.SetBufferSize(100, 20000);
             IIO io = new FileIO();
             IEnumerable<string> file = io.ReadSourceIterable(testpath + "TIME.QUE");
             IEnumerable<string> expectedResults = io.ReadSourceIterable(testpath + "TIME.REL");
@@ -48,6 +54,7 @@ namespace PuttingThingsTogether {
             double worstRecall = 2;
             double bestPrecision = -1;
             double worstPrecision = 2;
+            double totalGoodPrecision = 0;
             double count = 0;
             while (it.HasNextContent()) {
                 string query = it.FindNextContent();
@@ -57,9 +64,12 @@ namespace PuttingThingsTogether {
                 query = Helpers.ConsumeName(query);
 
                 Console.WriteLine(query);
+               
 
                 IDataTree queryTree = DataTreeBuilder.CreateStemmedDocumentMapTree(tree);
                 DataTreeBuilder.AddToDataTreeBoyerMoore(queryTree, query);
+
+                queryTree.PrintDataTree();
 
                 Console.WriteLine("Expected Results: ");
                 while(string.IsNullOrEmpty(resultsEnum.Current))
@@ -77,17 +87,23 @@ namespace PuttingThingsTogether {
                 foreach(String s in Directory.EnumerateFiles(testpath + @"\datatrees")) {
                     IDataTree docTree = tio.LoadDataTree(s);
                     if (queryTree.CompareTo(docTree)) {
-                        Console.Write(" " + docTree.Name);
+                        Console.WriteLine(" Found: " + docTree.Name);
+                        //docTree.PrintDataTree();
                         totalRetrieved++;
                         if (expectedArray.Contains(docTree.Name)) {
                             relevant++;
                         }
+                    } else if (expectedArray.Contains(docTree.Name)) {
+                        Console.WriteLine(" Expected: " + docTree.Name);
+                        //docTree.PrintDataTree();
                     }
                 }
+               
                 Console.WriteLine();
                 Console.WriteLine("Precision: " + relevant + "/" + totalRetrieved );
                 Console.WriteLine("Recall: " + relevant + "/" + (expectedArray.Length));
                 Console.WriteLine();
+                //Console.ReadLine();
 
                 count++;
                 double recall = relevant / expectedArray.Length;
@@ -111,6 +127,9 @@ namespace PuttingThingsTogether {
                 if(recall < worstRecall) {
                     worstRecall = recall;
                 }
+                if (recall > .5) {
+                    totalGoodPrecision += precision;
+                }
             }
 
             Console.WriteLine("-------------------");
@@ -120,6 +139,7 @@ namespace PuttingThingsTogether {
             Console.WriteLine("Worst Recall: " + worstRecall);
             Console.WriteLine("Best Precision: " + bestPrecision);
             Console.WriteLine("Best Recall: " + bestRecall);
+            //Console.WriteLine("Average Good Recall Precision: " + totalGoodPrecision / count);
         }
 
         public static void MakeTrees(string contentTreeName) {
@@ -322,5 +342,43 @@ namespace PuttingThingsTogether {
                 Console.WriteLine(s);
             }
         }
+
+        public static void TestWordSuggestions() {
+            IIO io = new FileIO();
+            IEnumerable<string> file = io.ReadSourceIterable(testpath + "TIME.ALL");
+            ITextExtractor it = new BeginMarkerExtraction(file, "*TEXT");
+
+            Console.WriteLine("Building suggestion base");
+            WordSuggestor ws = new WordSuggestor();
+            ws.AddAllStemmed(it);
+            string test = "embassi";
+            Console.WriteLine("Determining suggestions for '" + test + "':");
+            var words = ws.WordSuggestions(test, .2);
+            foreach (string s in words) {
+                Console.WriteLine(s);
+            }
+        }
+
+        public static void BuildSuggestor() {
+            IIO io = new FileIO();
+            IEnumerable<string> file = io.ReadSourceIterable(testpath + "TIME.ALL");
+            ITextExtractor it = new BeginMarkerExtraction(file, "*TEXT");
+
+            Console.WriteLine("Building suggestion base");
+            WordSuggestor ws = new WordSuggestor();
+            ws.AddAllStemmed(it);
+            Console.WriteLine("Saving tree");
+            ITreeIO tio = new TreeIO();
+            tio.SaveObject(ws, testpath + "WordSuggestions");
+        }
+
+        public static void BuildContentTree() {
+            ITreeIO tio = new TreeIO();
+            WordSuggestor ws = tio.LoadObject(testpath + "WordSuggestions") as WordSuggestor;
+
+            IBaseTree tree = ws.BuildTree();
+            tio.SaveBaseTree(tree, testpath + "AutoTree.tree");
+        }
+
     }
 }
