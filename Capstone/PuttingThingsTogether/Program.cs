@@ -19,17 +19,18 @@ namespace PuttingThingsTogether {
         static string testpath = @"G:\Data\time\";
 
         static void Main(string[] args) {
-            //RunComparison("TreeV5.3.tree");
             //MakeTrees("flatTree.tree");
             //getDocsForQuery("TreeV5.tree");
             //CompareAll();
             //TestSuggestions();
             //TestWordSuggestions();
-            //Compare("TreeV5.2.tree");
-            Console.WriteLine("Building suggestor table");
-            BuildSuggestor();
-            Console.WriteLine("Building tree");
-            BuildContentTree();
+            //Compare("AutoTree.tree");
+            //Console.WriteLine("Building suggestor table");
+            //BuildSuggestor();
+            //Console.WriteLine("Building tree");
+            //BuildSuggestor();
+            //BuildContentTreeGoodMatches();
+            RunComparison("AutoTree2.tree");
 
         }
 
@@ -66,8 +67,8 @@ namespace PuttingThingsTogether {
                 Console.WriteLine(query);
                
 
-                IDataTree queryTree = DataTreeBuilder.CreateStemmedDocumentMapTree(tree);
-                DataTreeBuilder.AddToDataTreeBoyerMoore(queryTree, query);
+                IDataTree queryTree = DataTreeBuilder.CreateDocumentMappedTree(tree);
+                DataTreeBuilder.AddToDataTree(queryTree, query);
 
                 queryTree.PrintDataTree();
 
@@ -158,8 +159,10 @@ namespace PuttingThingsTogether {
                 content = Helpers.ConsumeName(content);
                 //Console.WriteLine(content);
 
-                IDataTree datatree = DataTreeBuilder.CreateStemmedDocumentMapTree(tree);
-                DataTreeBuilder.AddToDataTreeBoyerMoore(datatree, content);
+                IDataTree datatree = DataTreeBuilder.CreateDocumentMappedTree(tree);
+                //Console.WriteLine(tree);
+                //Console.WriteLine(datatree.GetBaseTree());
+                DataTreeBuilder.AddToDataTree(datatree, content);
                 datatree.Name = name;
 
                 tio.SaveDataTree(datatree, testpath + @"\datatrees\" + name + ".dtree");
@@ -366,7 +369,7 @@ namespace PuttingThingsTogether {
 
             Console.WriteLine("Building suggestion base");
             WordSuggestor ws = new WordSuggestor();
-            ws.AddAllStemmed(it);
+            ws.addAll(it);
             Console.WriteLine("Saving tree");
             ITreeIO tio = new TreeIO();
             tio.SaveObject(ws, testpath + "WordSuggestions");
@@ -378,6 +381,14 @@ namespace PuttingThingsTogether {
 
             IBaseTree tree = ws.BuildTree();
             tio.SaveBaseTree(tree, testpath + "AutoTree.tree");
+        }
+
+        public static void BuildContentTreeGoodMatches() {
+            ITreeIO tio = new TreeIO();
+            WordSuggestor ws = tio.LoadObject(testpath + "WordSuggestions") as WordSuggestor;
+
+            IBaseTree tree = ws.BuildTreeGoodMatches();
+            tio.SaveBaseTree(tree, testpath + "AutoTree2.tree");
         }
 
     }

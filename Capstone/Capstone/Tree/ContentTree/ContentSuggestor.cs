@@ -134,6 +134,7 @@ namespace TreeApi.Tree.ContentTree {
             public double TF { get; set; }
         }
 
+        [Serializable]
         private class WordMetadata {
             public double IDF { get; set; }
             public int DocumentAppearences { get; set; }
@@ -147,10 +148,12 @@ namespace TreeApi.Tree.ContentTree {
 
         public IBaseTree BuildTree() {
                                                                  //change the .05?
-            var orderedByIDF = WordDocumentAppearances.Where(x => x.Value.IDF > .05).OrderBy(x => x.Value.IDF).ToList();
+            //var orderedByIDF = WordDocumentAppearances.Where(x => x.Value.IDF > .1).OrderBy(x => x.Value.IDF).ToList();
+            int b = 0;
+            var orderedByIDF = WordDocumentAppearances.Where(x => !Int32.TryParse(x.Key, out b)).OrderByDescending(x => x.Value.IDF).Take((int)(WordDocumentAppearances.Count * .7)).ToList();
             IBaseTree tree = new BaseTree();
-            tree.Rename(tree.Root, "the");
-
+            tree.AddWord((string)null, "the");
+            orderedByIDF = orderedByIDF.OrderBy(x => x.Value.IDF).ToList();
             //Make the cutoff greater than 0, so not quite all words are added? - taken care of above?
             while (orderedByIDF.Count > 0) {
                 //decide next word to add
@@ -161,13 +164,18 @@ namespace TreeApi.Tree.ContentTree {
                 int numDif = Int32.MaxValue;
                 Node parent = null;
                 foreach(Node n in tree) { //for every branch in the tree
-                    Console.WriteLine("Checking branch");
+                    //Console.WriteLine("Checking branch");
                     //first check to make sure it is completely contained
-                    bool contained = !WordDocumentAppearances[word].Docs.Except(WordDocumentAppearances[n.KeyWord].Docs).Any();
-
+                    bool contained = true;
+                    foreach (var element in WordDocumentAppearances[word].Docs) {
+                        if (!WordDocumentAppearances[n.KeyWord].Docs.Contains(element)) {
+                            contained = false;
+                            break;
+                        }
+                    }
                     //if it is,
                     if(contained) {
-                        Console.WriteLine("Determining fit");
+                        //Console.WriteLine("Determining fit");
                         int numDifTemp = 0;
                         foreach (string s2 in WordDocumentAppearances[n.KeyWord].Docs) { //for each document the branch's word appears in
                             if(!WordDocumentAppearances[word].Docs.Contains(s2)) { // if this word doesn't appear in a document which the other does
@@ -175,7 +183,7 @@ namespace TreeApi.Tree.ContentTree {
                             }
                         }
                         //if the number of different branches is less than the last node's, 
-                        if(numDifTemp < numDif) {
+                        if(numDifTemp <= numDif) {
                             Console.WriteLine("New parent: " + n.KeyWord);
                             //make this the new parent of the new word
                             numDif = numDifTemp;
@@ -189,6 +197,67 @@ namespace TreeApi.Tree.ContentTree {
                 tree.AddNode(parent, new Node(word));
                 
                 orderedByIDF.Remove(orderedByIDF.First());
+                Console.WriteLine("Remaining words: " + orderedByIDF.Count);
+            }
+
+            return tree;
+        }
+
+        public IBaseTree BuildTreeGoodMatches() {
+            //change the .1?
+            var orderedByIDF = WordDocumentAppearances.Where(x => x.Value.IDF > .2).OrderBy(x => x.Value.IDF).ToList();
+            //int b = 0;
+            //var orderedByIDF = WordDocumentAppearances.Where(x => !Int32.TryParse(x.Key, out b)).OrderByDescending(x => x.Value.IDF).Take((int)(WordDocumentAppearances.Count * .7)).ToList();
+            IBaseTree tree = new BaseTree();
+            tree.AddWord((string)null, "the");
+            orderedByIDF = orderedByIDF.OrderBy(x => x.Value.IDF).ToList();
+            //Make the cutoff greater than 0, so not quite all words are added? - taken care of above?
+            while (orderedByIDF.Count > 0) {
+                //decide next word to add
+                string word = orderedByIDF.First().Key;
+                Console.WriteLine("Adding word '" + word + "' to tree");
+
+                //find lowest branch in which all significant occurences of the word/document happen
+                int numDif = Int32.MaxValue;
+                Node parent = null;
+                foreach (Node n in tree) { //for every branch in the tree
+                    //Console.WriteLine("Checking branch");
+                    //first check to make sure it is completely contained
+                    bool contained = true;
+                    foreach (var element in WordDocumentAppearances[word].Docs) {
+                        //TODO: Make this check to make sure appearances are significant
+                        if (!WordDocumentAppearances[n.KeyWord].Docs.Contains(element) && PossibleContent[new KeyValuePair<string,Document>(word, new Document() { Name = element })].Frequency > 1) {
+                            contained = false;
+                            break;
+                        }
+                    }
+                    //if it is,
+                    if (contained) {
+                        //Console.WriteLine("Determining fit");
+                        int numDifTemp = 0;
+                        foreach (string s2 in WordDocumentAppearances[n.KeyWord].Docs) { //for each document the branch's word appears in
+                            if ((!WordDocumentAppearances[word].Docs.Contains(s2) && PossibleContent[new KeyValuePair<string,Document>(n.KeyWord, new Document() { Name = s2 })].Frequency > 1)) { // if this word doesn't appear in a document which the other does
+                                numDifTemp++;
+                            }
+                        }
+                        //if the number of different branches is less than the last node's, 
+                        if (numDifTemp < numDif) {
+                            Console.WriteLine("New parent: " + n.KeyWord);
+                            //make this the new parent of the new word
+                            numDif = numDifTemp;
+                            parent = n;
+                        }
+                    }
+                }
+
+                if (parent != null) {
+                    Console.WriteLine("Adding " + word + " to tree");
+                    //add to that branch
+                    tree.AddNode(parent, new Node(word));
+                }
+
+                orderedByIDF.Remove(orderedByIDF.First());
+                Console.WriteLine("Remaining words: " + orderedByIDF.Count);
             }
 
             return tree;

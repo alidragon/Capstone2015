@@ -46,6 +46,21 @@ namespace TreeApi.Tree {
                 throw new InvalidOperationException("Data Tree's base tree cannot be null");
             }
         }
+        public static void AddToDataTreeStemmed(IDataTree dataTree, string content) {
+            if (dataTree == null || content == null) {
+                throw new ArgumentNullException();
+            }
+            try {
+                string[] words = content.Split(' ');
+                foreach (string w in words) {
+                    string s = StringFunctions.Normalize(w);
+                    s = StringFunctions.StemmedWord(s);
+                    dataTree.AddConnection(s);
+                }
+            } catch (NullReferenceException) {
+                throw new InvalidOperationException("Data Tree's base tree cannot be null");
+            }
+        }
 
         public static void AddToDataTreeBoyerMoore(IDataTree dataTree, string content) {
             if (dataTree == null || content == null) {
